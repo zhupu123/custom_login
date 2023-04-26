@@ -8,7 +8,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-   
+    <script>
+        function makePwdToggler(pwd){
+          // Create show-password checkbox
+          var checkbox = document.createElement('input');
+          checkbox.setAttribute('type', 'checkbox');
+          var id = pwd.id + 'toggler';
+          checkbox.setAttribute('id', id);
+
+          var label = document.createElement('label');
+          label.setAttribute('for', id);
+          label.appendChild(document.createTextNode('show password'));
+
+          var div = document.createElement('div');
+          div.appendChild(checkbox);
+          div.appendChild(label);
+
+          // Add show-password checkbox under password input
+          pwd.insertAdjacentElement('afterend', div);
+
+          // Add toggle password callback
+          function toggle(){
+            if(pwd.type === 'password'){
+              pwd.type = 'text';
+            } else {
+              pwd.type = 'password';
+            }
+          }
+          checkbox.onclick = toggle;
+          // For non-mouse usage
+          checkbox.onkeydown = toggle;
+        }
+
+        function setupPwdTogglers(){
+          var pwdInputs = document.querySelectorAll('input[type=password]');
+          for (var i = 0; i < pwdInputs.length; i++) {
+            makePwdToggler(pwdInputs[i]);
+          }
+        }
+
+        setupPwdTogglers();        
+    </script>
     
     <style>
         h1 {
