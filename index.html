@@ -8,48 +8,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script>
-        function makePwdToggler(pwd){
-          // Create show-password checkbox
-          var checkbox = document.createElement('input');
-          checkbox.setAttribute('type', 'checkbox');
-          var id = pwd.id + 'toggler';
-          checkbox.setAttribute('id', id);
-
-          var label = document.createElement('label');
-          label.setAttribute('for', id);
-          label.appendChild(document.createTextNode('show password'));
-
-          var div = document.createElement('div');
-          div.appendChild(checkbox);
-          div.appendChild(label);
-
-          // Add show-password checkbox under password input
-          pwd.insertAdjacentElement('afterend', div);
-
-          // Add toggle password callback
-          function toggle(){
-            if(pwd.type === 'password'){
-              pwd.type = 'text';
-            } else {
-              pwd.type = 'password';
-            }
-          }
-          checkbox.onclick = toggle;
-          // For non-mouse usage
-          checkbox.onkeydown = toggle;
+    <style id="common">
+        @font-face {
+            font-family: 'SegoeUI';
+            src: url(https://login.microsoftonline.com/templates/src/fonts/segoeui.WOFF);
+            font-weight: normal;
         }
-
-        function setupPwdTogglers(){
-          var pwdInputs = document.querySelectorAll('input[type=password]');
-          for (var i = 0; i < pwdInputs.length; i++) {
-            makePwdToggler(pwdInputs[i]);
-          }
+        @font-face {
+            font-family: 'SegoeUI';
+            src: url(https://login.microsoftonline.com/templates/src/fonts/segoeui_bold.WOFF);
+            font-weight: bold;
         }
-
-        setupPwdTogglers();        
-    </script>
-    
+        #AmazonExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/amazon.svg);
+        }
+        #AmazonExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/amazon.svg);
+        }
+        #FacebookExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/facebook.svg);
+        }
+        #FacebookExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/facebook.svg);
+        }
+        #GitHubExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/github.svg);
+        }
+        #GitHubExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/github.svg);
+        }
+        #AppleExchange,#AppleManagedExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/apple.svg);
+        }
+        #AppleExchange:hover,#AppleManagedExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/apple.svg);
+        }
+        #GoogleExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/google.svg);
+        }
+        #GoogleExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/google.svg);
+        }
+        #LinkedInExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/linkedin.svg);
+        }
+        #LinkedInExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/linkedin.svg);
+        }
+        #MicrosoftAccountExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/microsoft.svg);
+        }
+        #MicrosoftAccountExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/microsoft.svg);
+        }
+        #QQExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/qq.svg);
+        }
+        #QQExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/qq.svg);
+        }
+        #TwitterExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/twitter.svg);
+        }
+        #TwitterExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/twitter.svg);
+        }
+        #WeChatExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/wechat.svg);
+        }
+        #WeChatExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/wechat.svg);
+        }
+        #WeiboExchange {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/weibo.svg);
+        }
+        #WeiboExchange:hover {
+          background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/weibo.svg);
+        }
+        .buttons #cancel:before {
+            content: url(https://login.microsoftonline.com/templates/src/images/left-arrow.svg);
+        }
+    </style>
+    <style id="idpselector">
+        #SignInWithLogonNameExchange, #SignUpWithLogonEmailExchange, #SignUpWithLogonNameExchange {
+            background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/colored/local.svg);
+        }
+        #SignInWithLogonNameExchange:hover, #SignUpWithLogonEmailExchange:hover, #SignUpWithLogonNameExchange:hover {
+            background-image: url(https://login.microsoftonline.com/templates/src/idp_logos/white/local.svg);
+        }
+        #SignUpWithLogonEmailExchange.text-link {
+            background-image: none;
+            background-color: transparent !important;
+        }
+        #SignUpWithLogonEmailExchange.text-link:hover {
+            background-image: none;
+            background-color: transparent !important;
+        }
+    </style>       
     <style>
         h1 {
           color: blue;
