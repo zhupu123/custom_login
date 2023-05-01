@@ -122,43 +122,7 @@
         /* endinject */
     </style>
     
-    <style>
-
-		body[data-mode="send-code"] #continue,
-		body[data-mode="verify-code"] #continue {
-		  display: none;
-		}
-
-		/*
-		  Override B2C's inline style that sets "display: inline" on instructions
-		  and field labels.
-		 */
-		body[data-mode="send-code"] #email_intro,
-		body[data-mode="verify-code"] #email_info,
-		body[data-mode="verify-code"] #attributeList label,
-		body[data-mode="email-verified"] #email_success {
-		  display: block !important;
-		}
-
-		/*
-		  Override B2C's logic that hides buttons and controls during requests.
-		 */
-		body[data-mode="send-code"] #email_ver_but_send,
-		body[data-mode="verify-code"] #email_ver_input,
-		body[data-mode="verify-code"] #email_ver_but_verify,
-		body[data-mode="verify-code"] #email_ver_but_resend {
-		  display: block !important;
-		}
-
-		/*
-		  BUGBUG: This button serves no function but can randomly appear on the
-		  page if the user reloads it during sign-up.
-		 */
-		#email_ver_but_default {
-		  display: none !important;
-		}
-    
-    </style>
+  
 
     <script type="text/javascript">
         
