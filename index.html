@@ -161,9 +161,6 @@
     </style>
 
     <script type="text/javascript">
-        //$(document).ready(function() {
-        //    alert("test");
-        //});
         
         const STATUS_OK        = 0,
               STATUS_BAD_EMAIL = 2;
@@ -175,12 +172,10 @@
             $emailField        = $('#email');
             $changeEmailButton = $('#email_ver_but_edit');
 
-        alert("test:"+$changeEmailButton);
         /**
          * Switches the mode of the form into requesting a confirmation code.
          */
         function switchToRequestConfirmationCodeMode() {
-            alert("switchToRequestConfirmationCodeMode");
           $body.attr('data-mode', 'send-code');
         }
 
@@ -188,7 +183,6 @@
          * Switches the mode of the form into validating a confirmation code.
          */
         function switchToVerifyCodeMode() {
-            alert("switchToVerifyCodeMode");
           $body.attr('data-mode', 'verify-code');
         }
 
@@ -196,10 +190,8 @@
          * Switches the mode of the form into completing sign-up.
          */
         function switchToEmailVerifiedMode() {
-            alert("switchToEmailVerifiedMode");
           $body.attr('data-mode', 'email-verified');
-          //$('#email_ver_but_edit').css('display', 'none');
-          $changeEmailButton.css('display', 'none');
+          $('#email_ver_but_edit').css('display', 'none');
 
         }
 
@@ -210,7 +202,6 @@
          *   The XHR being sent out to get a verification code sent out.
          */
         function handleSendVerificationCodeRequest(jqXhr) {
-            alert("handleSendVerificationCodeRequest");
           let controlsToDisableDuringRequest = [
             '#email_ver_but_send',
           ];
@@ -220,7 +211,6 @@
           jqXhr.done((data) => {
             if ((data.status === "200") && (data.result === STATUS_OK)) {
               // Code sent successfully.
-                alert("jqXhr.done");
               switchToVerifyCodeMode();
             }
           });
@@ -234,7 +224,6 @@
          *   user.
          */
         function handleValidateCodeRequest(jqXhr) {
-            alert("handleValidateCodeRequest");
           let controlsToDisableDuringRequest = [
             '#email_ver_input',
             '#email_ver_but_verify',
@@ -266,7 +255,6 @@
          *   The XHR during which controls should be disabled.
          */
         function disableControlsDuringRequest(controls, jqXhr) {
-            alert("disableControlsDuringRequest");
           let $controls = $(controls.join(','));
 
           // Disable controls during the XHR.
@@ -293,8 +281,6 @@
             let parsedData  = new URLSearchParams(settings.data),
                 requestType = parsedData.get('request_type')
             
-            alert("requestType="+requestType);
-
             if (requestType === REQUEST_TYPE_CODE_REQUEST) {
               handleSendVerificationCodeRequest(jqXhr);
             }
