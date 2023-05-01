@@ -160,8 +160,8 @@
         function switchToEmailVerifiedMode() {
             alert("switchToEmailVerifiedMode");
           $body.attr('data-mode', 'email-verified');
-          $changeEmailButton.hide();
-          $changeEmailButton.remove();
+          $('#email_ver_but_edit').css('display', 'none');
+
         }
 
         /**
