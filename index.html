@@ -115,10 +115,14 @@
     </style>
      <style>
 
-		body[data-mode="send-code"] #continue,
-		body[data-mode="verify-code"] #continue {
+		#continue {
 		  display: none;
 		}
+	     
+	     	body[data-mode="email-verified"] #continue {
+		  display: initial;
+	     	}
+	   
 
 		/*
 		  Override B2C's inline style that sets "display: inline" on instructions
