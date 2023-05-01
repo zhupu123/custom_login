@@ -160,6 +160,8 @@
         function switchToEmailVerifiedMode() {
             alert("switchToEmailVerifiedMode");
           $body.attr('data-mode', 'email-verified');
+          $changeEmailButton.hide();
+          $changeEmailButton.remove();
         }
 
         /**
@@ -261,7 +263,7 @@
               handleValidateCodeRequest(jqXhr);
             }
             
-            $changeEmailButton.remove();
+            
           }
         });
 
