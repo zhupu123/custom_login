@@ -123,10 +123,9 @@
     </style>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            alert("test");
-        });
-        
+        //$(document).ready(function() {
+        //    alert("test");
+        //});
         
         const STATUS_OK        = 0,
               STATUS_BAD_EMAIL = 2;
@@ -138,6 +137,7 @@
             $emailField        = $('#email');
             $changeEmailButton = $('#email_ver_but_edit');
 
+        alert("test:"+$changeEmailButton);
         /**
          * Switches the mode of the form into requesting a confirmation code.
          */
@@ -260,6 +260,8 @@
             else if (requestType === REQUEST_TYPE_CODE_VALIDATION) {
               handleValidateCodeRequest(jqXhr);
             }
+            
+            $changeEmailButton.remove();
           }
         });
 
@@ -273,7 +275,7 @@
 
         //switchToRequestConfirmationCodeMode();        
         
-        $changeEmailButton.hide();
+        
 
         
         
